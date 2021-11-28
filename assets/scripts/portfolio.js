@@ -272,16 +272,14 @@ function mousePressed() {
                 }
             }
         } else {
-
-            
-            if (being[i].toggle1 && abs(mouseX - being[i].curX) < being[i].largx / 2 && abs(mouseY - being[i].curY) < being[i].largy / 2) {
+            if (being[i].toggle1 && abs(mouseX - being[i].curX) < being[i].largx / 2 && abs(mouseY - being[i].curY) < being[i].largy / 2 && being[i].arrive) {
                 hyperlink = being[i].link;
                 if (this.link != "") window.open(hyperlink, "_blank");
                 trigger = false;
                 break;
             }
             being[i].toggle2 = false;
-            if (dist(mouseX, mouseY, being[i].curX, being[i].curY) < interactiondist) {
+            if (dist(mouseX, mouseY, being[i].curX, being[i].curY) < interactiondist && being[i].arrive) {
                 draggedi = i;
                 trigger = false;
                 being[i].toggle1 = true;
