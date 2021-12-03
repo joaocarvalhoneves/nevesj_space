@@ -118,6 +118,7 @@ function setup() {
 
 
 function draw() {
+    console.log(width, height);
     background(40);
     g.next();
     g.show();
@@ -184,14 +185,6 @@ function draw() {
     opened = 0;
     for (let i = 0; i < being.length; i++) {
         being[i].tooltip();
-    }
-
-
-    if (mobile()) {
-        noFill();
-        stroke(255);
-        rect(mouseX, mouseY, 1, 1);
-        rect(mouseX, mouseY, 2, 2);
     }
 
     // interação de projetos com GoL
@@ -261,23 +254,22 @@ function mouseDragged() {
 // cliques para ativar arrasto de projeto ou abrir projeto em novo separador
 
 function mousePressed() {
-    let hyperlink = "";
+
     let trigger = true;
     for (let i = 0; i < being.length; i++) {
         if (!mobile()) {
             if (dist(mouseX, mouseY, being[i].curX, being[i].curY) < interactiondist) {
                 trigger = false;
                 if (being[i].arrive) {
-                    hyperlink = being[i].link;
-                    if (this.link != "") window.open(hyperlink, '_blank');
+                    
+                    if (being[i].link != "") window.open(being[i].link, '_blank');
                     break;
                 }
             }
         } else {
             if (being[i].toggle1 && being[i].largx > 100 && abs(mouseX - being[i].curX) < being[i].largx / 2 && abs(mouseY - being[i].curY) < being[i].largy / 2 && being[i].arrive) {
-                console.log("a");
                 hyperlink = being[i].link;
-                if (this.link != "") window.open(hyperlink, "_blank");
+                if (being[i].link != "") window.open(being[i].link, "_blank");
                 trigger = false;
                 break;
             }
