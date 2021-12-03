@@ -210,7 +210,7 @@ function draw() {
 // função que devolve se o ecrã é pequeno
 
 function mobile() {
-    return (width < 650 && height < 750);
+    return (width < 650 && height < 800);
 }
 
 
