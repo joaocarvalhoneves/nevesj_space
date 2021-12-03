@@ -114,7 +114,7 @@ class Being {
     }
 
 
-    // função para expandir o rato e apresentar o texto respetivo a cada projeto após verificar se ele está a ser arrastado e se chegou ao seu destino
+    // função para expandir o rato e apresentar o texto respetivo de cada projeto após verificar se ele está a ser arrastado e se chegou ao seu destino
 
     tooltip() {
         if (!mobile()) {

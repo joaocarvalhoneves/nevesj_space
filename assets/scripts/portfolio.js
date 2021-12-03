@@ -1,23 +1,23 @@
-let space;                 // fonte
-let being = [];            // projetos
-let e = [];                // elementos GoL
-let g;                     // GoL
-let cursors = 0;           // variável para aumentar rato
-let cursorsizeX = 3;       // tamanho x do rato (que expande com hover)
-let cursorsizeY = 3;       // tamanho y do rato (que expande com hover)
-let textProjectSize = 13;  // tamanho inicial do texto
-let textAlfa1 = 0;         // alfa inicial do texto
-let textalt = 78;          // altura dos retângulos de texto
-let cols;                  // colunas GoL
-let rows;                  // linhas GoL
-let size = 15;             // tamanho para elementos GoL
-let pborderx;              // dist dos projetos às margens em x
-let pbordery;              // dist dos projetos às margens em y
-let responsivedist;        // dist entre projetos
-let interactiondist;       // dist para interação com projeto
-let opened;                // boolean para verificar se há algum projeto aberto 
-let drag;                  // boolean para verificar se há arrasto
-let draggedi;              // projeto a ser arrastado
+let space; // fonte
+let being = []; // projetos
+let e = []; // elementos GoL
+let g; // GoL
+let cursors = 0; // variável para aumentar rato
+let cursorsizeX = 3; // tamanho x do rato (que expande com hover)
+let cursorsizeY = 3; // tamanho y do rato (que expande com hover)
+let textProjectSize = 13; // tamanho inicial do texto
+let textAlfa1 = 0; // alfa inicial do texto
+let textalt = 78; // altura dos retângulos de texto
+let cols; // colunas GoL
+let rows; // linhas GoL
+let size = 15; // tamanho para elementos GoL
+let pborderx; // dist dos projetos às margens em x
+let pbordery; // dist dos projetos às margens em y
+let responsivedist; // dist entre projetos
+let interactiondist; // dist para interação com projeto
+let opened; // boolean para verificar se há algum projeto aberto 
+let drag; // boolean para verificar se há arrasto
+let draggedi = -1; // projeto a ser arrastado
 
 function preload() {
     space = loadFont('assets/space.otf');
@@ -210,7 +210,7 @@ function draw() {
 // função que devolve se o ecrã é pequeno
 
 function mobile() {
-    return (width < 650 && height < 650);
+    return (width < 650 && height < 750);
 }
 
 
@@ -245,16 +245,18 @@ function mouseReleased() {
 // função que possibilita arrasto de projeto
 
 function mouseDragged() {
+    if (draggedi != -1) {
+        being[draggedi].curX = mouseX;
+        being[draggedi].curY = mouseY;
+    }
     if (drag) {
         for (let i = 0; i < being.length; i++) {
             being[i].toggle1 = false;
             being[i].toggle2 = false;
         }
-        being[draggedi].curX = mouseX;
-        being[draggedi].curY = mouseY;
-        
     }
 }
+
 
 // cliques para ativar arrasto de projeto ou abrir projeto em novo separador
 
@@ -272,7 +274,8 @@ function mousePressed() {
                 }
             }
         } else {
-            if (being[i].toggle1 && abs(mouseX - being[i].curX) < being[i].largx / 2 && abs(mouseY - being[i].curY) < being[i].largy / 2 && being[i].arrive) {
+            if (being[i].toggle1 && being[i].largx > 100 && abs(mouseX - being[i].curX) < being[i].largx / 2 && abs(mouseY - being[i].curY) < being[i].largy / 2 && being[i].arrive) {
+                console.log("a");
                 hyperlink = being[i].link;
                 if (this.link != "") window.open(hyperlink, "_blank");
                 trigger = false;
@@ -289,7 +292,7 @@ function mousePressed() {
         }
     }
 
- // criação de agente GoL
+    // criação de agente GoL
 
     if (trigger) {
         g.willdie = true;
