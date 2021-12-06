@@ -134,7 +134,7 @@ function draw() {
         }
     }
     if (!mobile()) {
-        stroke(255);
+       stroke(255);
         noFill();
         strokeWeight(1);
         if (cursors == 0) {
@@ -179,17 +179,19 @@ function draw() {
         cursors = 0;
     }
 
-    // cursor para ecrãs pequenos mas desktop
-    if (!mobileCheck()) {
-        stroke(255);
-        fill(255);
-        rect(mouseX, mouseY, 1, 1);
-        rect(mouseX, mouseY, 2, 2);
-    }
+   
 
     opened = 0;
     for (let i = 0; i < being.length; i++) {
         being[i].tooltip();
+    }
+
+     // cursor para ecrãs pequenos mas desktop
+     if (!mobileCheck()) {
+        stroke(255);
+        fill(255);
+        rect(mouseX, mouseY, 1, 1);
+        rect(mouseX, mouseY, 2, 2);
     }
 
     // interação de projetos com GoL

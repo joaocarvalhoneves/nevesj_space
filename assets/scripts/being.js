@@ -129,6 +129,7 @@ class Being {
                 fill(255, textAlfa1);
                 text(this.descricao, mouseX - cursorsizeX / 2 + 10, mouseY - cursorsizeY / 2 + 26);
                 this.hover = true;
+                
 
             } else {
                 this.hover = false;
